@@ -1,11 +1,5 @@
 #include "alg.h"
 
-namespace alg
-{
-	void qsort(std::vector<int>& vec);
-	int binSch(std::vector<int>& vec, int item);
-}
-
 void alg::qsort(std::vector<int>& vec)
 {
 	std::vector<int> uni;
@@ -14,17 +8,16 @@ void alg::qsort(std::vector<int>& vec)
 		return;
 	}
 
-	int sup = vec[0];
+	int sup = vec[vec.size()/2];
 	std::vector<int> right;
 	std::vector<int> left;
 
-	for (int i = 1; i < vec.size(); i++)
+	for (int i = 0; i < vec.size(); i++)
 	{
 		if (sup > vec[i])
 		{
 			left.push_back(vec[i]);
-		}
-		else
+		}else if(sup < vec[i])
 		{
 			right.push_back(vec[i]);
 		}
@@ -66,11 +59,10 @@ int alg::binSch(std::vector<int>& vec, int item)
 		{
 			left = index + 1;
 		}
-		else
+		else if (item == vec[index])
 		{
 			return index;
 		}
 	}
-	std::cout << '\n' << "Not found" << '\n';
-	return 0;
+	return -1;
 }
